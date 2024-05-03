@@ -1,4 +1,4 @@
-Ce répertoire contient les projets personnels et dans le cadre de l'école que j'ai effectué.
+Ce répertoire contient des projets que j'ai effectué.
 
 Il contient :
 
