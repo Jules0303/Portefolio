@@ -1,11 +1,10 @@
-Ce répertoire contient les projets personnels et dans le cadre de l'école que j'ai effectuer.
+Ce répertoire contient les projets personnels et dans le cadre de l'école que j'ai effectué.
 
 Il contient :
 
-Le jeu trétriste, un jeu ressemblant à tétris ou on aligne des élément de formes et couleurs pour faire des points.
+le jeu tré-triste, un jeu ressemblant à Tetris où on aligne des éléments de formes et couleurs pour faire des points.
 Ce jeu est codé en C
 
+Une machine virtuelle en c. Elle traduit chaque instruction d'un fichier composé d'opération en assembleur et produit un fichier contenant cette traduition puis l'exécute.
 
-Une machine virtuel en C. Elle traduit chaque instruction d'un fichier composé d'opération en assembleur, produit un fichier contenant cette traduit puis l'exécute.
-
-Le jeu du Mastermind en shell: un jeu basique où on cherche à deviner une combinaise de chiffre 
+Le jeu du Mastermind en shell: un jeu basique où on cherche à deviner une combinaison de chiffre
