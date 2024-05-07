@@ -1,9 +1,9 @@
 #!/bin/bash
 
-#n le nombre de chiffre du code
-n=5
-#bla valeur max de chaque chiffre
-b=5
+#n la taille du code
+n=3
+#b la valeur max de chaque chiffre
+b=3
 
 nombre_essaie=10
 #generation du code avec n nombre aléatoire en 1 et b
@@ -17,29 +17,18 @@ codesecret(){
     echo "$code"
 }
 
-#recupération du nombre de l'utilisateur et test qu'il soit comforme
+#recupération du nombre de l'utilisateur et test qu'il soit conforme
 recupNombre(){
-    local valeur
-    valeur=-1
-    local valmax=0
-    local valmin=0
-
-    for ((i=0; i<n;i++)) do
-        valmax=$((valmax + b*10**i))
-        valmin=$((valmin + 10**i))
-    done
-
-
-    while (( valeur < valmin || valeur > valmax )); 
+    local val=1
+    while ((val!=0)); 
         do
             read -r -p "Veuillez entrer un nombre de $n chiffres entre 1 et $b inclu:  " valeur
-            if [ ${#valeur} -ne $n ]; then
-                valeur=-1
-            fi
-        done
+                if [[ $valeur =~ ^[1-$b]+$ ]]; then
+                    val=0
+                fi
+            done
         echo "$valeur"
 }
-
 #renvoie le nombre de chiffes bien placé et mal placé
 TestSequence(){
 
@@ -54,14 +43,14 @@ TestSequence(){
         if [[ "${nombre:$i:1}" == "${code:$i:1}" ]]; then
             ((chiffres_identiques++))
         else
-            code_check[i]=${code:$i:1} #si un chiffre n'est pas correste on le stock dans un tableau
+            code_check+=("${code:$i:1}") #si un chiffre n'est pas correste on le stock dans un tableau
         fi
     done
 
     for (( i = 0; i < n; i++ )); do
         if [[ "${nombre:$i:1}" != "${code:$i:1}" ]]; then   #si un chiffre est malplace on verifie qu'il est dans ce tableau et on le supprime ensuite du tzbleau pour eviter les doublons
             for (( j = 0; j < ${#code_check[@]}; j++ )); do
-                if [[ "${nombre:$i:1}" == "${code_check[$j]}" ]]; then
+                if [[ "${nombre:$i:1}" == "${code_check[$j]}" && "${code_check[$j]}" != "" ]]; then
                     ((chiffres_malplace++))
                     code_check[j]=""
                     break
@@ -70,15 +59,11 @@ TestSequence(){
         fi
     done
 
-    echo "Chiffres corrects: $chiffres_identiques, Chiffres mal placés: $chiffres_malplace"
+    echo -e "Chiffres corrects: $chiffres_identiques, Chiffres mal placés: $chiffres_malplace \n"
 }
-
-
 
 #programme principal que l'on va appeler pour chaque partie
 jeu(){
-
-
 
     code=$(codesecret)
     #echo "$code"
@@ -101,7 +86,6 @@ jeu(){
     echo "Partie Perdu"
 
 }
-
 
 #initialisation du programme
 echo "Bienvenue dans le mastermind"
